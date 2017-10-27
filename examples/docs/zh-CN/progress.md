@@ -1,3 +1,30 @@
+<script>
+  module.exports = {
+    data() {
+      return {
+        percent : 0,
+        statusDec : ""
+      };
+    },
+    methods : {
+        add () {
+            this.percent += 10;
+            if (this.percent >= 100) {
+                this.statusDec = "success";
+            }else{
+                this.statusDec = "";
+            }
+        },
+        minus () {
+            if (this.percent <= 0) {
+                return false;
+            }
+            this.percent -= 10;
+            this.statusDec = "";
+        }
+    }
+  };
+</script>
 <style>
   .demo-box.demo-progress {
     .el-progress--line {
@@ -52,6 +79,51 @@
 ```
 :::
 
+### 环形进度条-配合外部组件使用
+
+:::demo Progress 通过数据的联动和逻辑控制，实现交互效果。
+```html
+<el-progress type="circle" :percentage="percent" :status="statusDec"></el-progress>
+<el-button-group>
+  <el-button @click="add">+</el-button>
+  <el-button @click="minus">-</el-button>
+</el-button-group>
+
+<script>
+export default {
+    data() {
+      return {
+        percent : 0,
+        statusDec : ""
+      };
+    },
+    methods : {
+        add () {
+            this.percent += 10;
+            if (this.percent >= 100) {
+                this.statusDec = "success";
+            }else{
+                this.statusDec = "";
+            }
+        },
+        minus () {
+            if (this.percent <= 0) {
+                return false;
+            }
+            this.percent -= 10;
+            this.statusDec = "";
+        }
+    }
+  };
+</script>
+```
+:::
+###自定义更多样式
+:::demo Progress
+```html
+
+```
+:::
 ### Attributes
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |
 |-------------  |---------------- |---------------- |---------------------- |-------- |
